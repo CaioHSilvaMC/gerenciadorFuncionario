@@ -1,10 +1,40 @@
-<!DOCTYPE HTML>
-<html lang "en">
-<head>
-	<meta charset= "UTF-8">
-	<title> "Gerenciador de Funcionarios" </title>
+<head th:replace="~{layoutBase :: head}">
 </head>
+
 <body>
-	<h1> Olá mano </h1>
+
+<div th:replace="~{layoutBase :: navbar}"></div>
+
+<div class="container mb-2">
+    <h1>Funcionários</h1>
+    <table class="table table-light">
+        <tr class="table-dark">
+            <th></th>
+            <th scope="col">Nome</th>
+            <th scope="col">Cargo</th>
+            <th scope="col">Email</th>
+            <th scope="col">Salario</th>
+            <th scope="col">Setor</th>
+            <th scope="col"></th>
+        </tr>
+
+        <tr th:each="funcionario : ${funcionarios}">
+            <th scope="row"></th>
+            <td><span th:text="${funcionario.nome}"></span></td>
+            <td><span th:text="${funcionario.cargo}"></span></td>
+            <td><span th:text="${funcionario.email}"></td>
+            <td>R$<span th:text="${funcionario.salario}"></span></td>
+            <td><span th:text="${funcionario.setor}"></span></td>
+            <td class="buttons "><a th:href="@{form/{id}(id=${funcionario.id})}"
+                                    th:method="get" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                <a th:href="@{delete/{id}(id=${funcionario.id})}" th:method="delete"
+                   class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
+        </tr>
+    </table>
+
+    <a href="/form"><button class="btn btn-dark">Adicionar
+        funcionario</button></a>
+</div>
 </body>
+
 </html>
