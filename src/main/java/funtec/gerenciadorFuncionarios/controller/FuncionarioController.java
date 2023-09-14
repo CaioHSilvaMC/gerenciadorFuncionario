@@ -29,7 +29,6 @@ public class FuncionarioController {
         if (result.hasFieldErrors()) {
             return "redirect:/form";
         }
-
         funcionarioRepository.save(funcionario);
 
         return "redirect:/home";
